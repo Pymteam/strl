@@ -4,9 +4,9 @@
 	<meta charset="utf-8">
 	<title>STRL</title>
 	<link rel="stylesheet" type="text/css" href="libs/bootstrap-3.3.7/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/editor.css">
 	<script src="libs/jquery/jquery-3.2.1.js"></script>
 	<script src="libs/bootstrap-3.3.7/js/bootstrap.js"></script>
-
 </head>
 <body>
 	<div class="navbar navbar-inverse">
@@ -15,8 +15,8 @@
 				<a class="navbar-brand" href="index.html">STRL</a>				
 			</div>
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="index.html">Главная</a></li>
-				<li><a href="worldeditor.html">Редактор</a></li>
+				<li><a href="index.html">Главная</a></li>
+				<li class="active"><a href="worldeditor.html">Редактор</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="sign_in.html"><span class="glyphicon glyphicon-user"></span> Вход</a></li>
@@ -26,10 +26,10 @@
 		</div>	
 	</div>
 
-	<div class="container">
-		<h1>Какая-то инфа</h1>		
-	
-
+	<div class="container-fluid editorcontainer">
+		<svg id="worldeditor">
+			<line x1="2" y1="0" x2="200" y2="200" stroke-width="1" stroke="rgb(0,0,0)"/>
+		</svg>
 	</div>
 
 </body>
