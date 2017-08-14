@@ -11,7 +11,20 @@ var picked = {
 	mouseCoord:{
 		x: 0,
 		y: 0
+	},
+	scalePoint: []
+}
+
+function unPicked(){
+	if (picked.ref != 0){
+		picked.ref = 0
+		picked.shape.remove()
+		for (var i = 0; i < 4; i++){
+			picked.scalePoint[i].remove()
+		}
 	}
+
+
 }
 
 function selectBox(cx, cy, w, h){
@@ -20,6 +33,11 @@ function selectBox(cx, cy, w, h){
 	cx += w2
 	cy += h2
 	picked.shape = s.polyline([[cx-w2, cy-h2], [cx+w2, cy-h2], [cx+w2, cy+h2], [cx-w2, cy + h2],[cx-w2, cy-h2] ]).fill('none').stroke({ color: '#0f0', width: 1 })
+	var sz = 5;
+	picked.scalePoint[0] = createRect(cx-w2-sz, cy-h2-sz, sz*2, sz*2, '#000');
+	picked.scalePoint[1] = createRect(cx+w2-sz, cy-h2-sz, sz*2, sz*2, '#000');
+	picked.scalePoint[2] = createRect(cx+w2-sz, cy+h2-sz, sz*2, sz*2, '#000');
+	picked.scalePoint[3] = createRect(cx-w2-sz, cy+h2-sz, sz*2, sz*2, '#000');
 }
 
 
@@ -30,7 +48,7 @@ function dragable_mousedown(event){
 	picked.drag = true
 	if (picked.ref != this){
 		if (picked.ref != 0){
-			picked.shape.remove()
+			unPicked()
 		}
 		var x = this.x()
 		var y = this.y()
@@ -55,6 +73,9 @@ function dragable_mousemove(event){
 		dy =  y - picked.mouseCoord.y
 		picked.ref.dmove(dx, dy)
 		picked.shape.dmove(dx,dy)
+		for (var i = 0; i < 4; i++){
+			picked.scalePoint[i].dmove(dx, dy);
+		}
 		//console.log(event.screenX, event.screenY)
 		console.log(event)
 		picked.mouseCoord.x = x
@@ -68,8 +89,7 @@ function dragable_mouseup(event){
 
 function pickedObjectReset(){
 	if (!f){
-		picked.ref = 0;
-		picked.shape.remove()
+		unPicked()
 	}
 	f = false
 	picked.drag = false
@@ -103,3 +123,5 @@ btn2 = document.getElementById("btn_addCircle")
 btn2.addEventListener('click', function (){
 	createCircle(10, 10, 50, '#faa')
 })
+
+createCircle(10, 10, 50, '#faa')
