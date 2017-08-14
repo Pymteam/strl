@@ -13,12 +13,12 @@
 				<a class="navbar-brand" href="index.html">STRL</a>				
 			</div>
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="index.html">Главная</a></li>
+				<li><a href="index.html">Главная</a></li>
 				<li><a href="index.html">Проекты</a></li>
 				<li><a href="index.html">Редактор</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="sign_in.html"><span class="glyphicon glyphicon-user"></span> Вход</a></li>
+				<li class="active"><a href="sign_in.html"><span class="glyphicon glyphicon-user"></span> Вход</a></li>
 				<li><a href="sign_up.html"><span class="glyphicon glyphicon-plus"></span> Регистрация</a></li>				
 			</ul>
 			
@@ -26,8 +26,20 @@
 	</div>
 
 	<div class="container">
-		<h1>Какая-то инфа</h1>		
-			<p>Ярослав питух</p>
+		<form>
+			<h1>Вход</h1>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+				<input id="email" type="text" class="form-control" name="email" placeholder="Введите ваш e-mail">
+			</div>
+			<br>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+				<input id="password" type="password" class="form-control" name="password" placeholder="Введите ваш пароль">
+			</div>
+			<br>
+			<button type="button" class="btn btn-primary">Войти</button>
+		</form>
 
 	</div>
 
