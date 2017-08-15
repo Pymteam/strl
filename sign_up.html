@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>STRL</title>
+	<link rel="stylesheet" type="text/css" href="libs/bootstrap-3.3.7/css/bootstrap.css">
+	<script src="libs/jquery/jquery-3.2.1.js"></script>
+	<script src="libs/bootstrap-3.3.7/js/bootstrap.js"></script>
+</head>
+<body>
+	<div class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.html">STRL</a>				
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href="index.html">Главная</a></li>
+				<li><a href="worldeditor.html">Редактор</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="sign_in.html"><span class="glyphicon glyphicon-user"></span> Вход</a></li>
+				<li class="active"><a href="sign_up.html"><span class="glyphicon glyphicon-plus"></span> Регистрация</a></li>				
+			</ul>
+			
+		</div>	
+	</div>
+
+	<div class="container">
+		<form>
+			<h1>Регистрация</h1>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+				<input id="username" type="text" class="form-control" name="username" placeholder="Введите ваше имя">
+			</div>
+			<br>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-inbox"></i></span>
+				<input id="email" type="text" class="form-control" name="email" placeholder="Введите ваш e-mail">
+			</div>
+			<br>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+				<input id="password" type="password" class="form-control" name="password" placeholder="Введите ваш пароль">
+			</div>
+			<br>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+				<input id="password" type="password" class="form-control" name="password" placeholder="Подтвердите ваш пароль">
+			</div>
+			<br>
+			<button type="button" class="btn btn-primary">Зарегистрироваться</button>
+		</form>
+
+	</div>
+
+</body>
+</html>
