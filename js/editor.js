@@ -15,6 +15,35 @@ var picked = {
 	scalePoint: []
 }
 
+function createRect(x, y, w, h, color){
+	var o = s.rect(w, h).move(x,y).attr({fill: color})
+	return o
+}
+
+function createBox(x, y, w, h, color){
+	var o = s.rect(w, h).move(x,y).attr({fill: color})
+	o.on('mousedown', dragable_mousedown)
+	o.on('mousemove', dragable_mousemove)
+	o.on('mouseup', dragable_mouseup)
+	return o
+}
+
+function createCircle(x, y, r, color){
+	var o = s.circle(r).move(x,y).attr({fill: color})
+	o.on('mousedown', dragable_mousedown)
+	o.on('mousemove', dragable_mousemove)
+	o.on('mouseup', dragable_mouseup)
+	return o
+}
+
+var scene = {
+	objects: [],
+	createRect: createRect,
+	createBox: createBox,
+	createCircle: createCircle
+
+}
+
 function unPicked(){
 	if (picked.ref != 0){
 		picked.ref = 0
@@ -95,33 +124,19 @@ function pickedObjectReset(){
 	picked.drag = false
 }
 
-function createRect(x, y, w, h, color){
-	var o = s.rect(w, h).move(x,y).attr({fill: color})
-	o.on('mousedown', dragable_mousedown)
-	o.on('mousemove', dragable_mousemove)
-	o.on('mouseup', dragable_mouseup)
-	return o
-}
 
-function createCircle(x, y, r, color){
-	var o = s.circle(r).move(x,y).attr({fill: color})
-	o.on('mousedown', dragable_mousedown)
-	o.on('mousemove', dragable_mousemove)
-	o.on('mouseup', dragable_mouseup)
-	return o
-}
 
 s.on('mouseup', pickedObjectReset)
 s.on('mousemove', dragable_mousemove)
 
 btn1 = document.getElementById("btn_addBox")
 btn1.addEventListener('click', function (){
-	createRect(10, 10, 50, 50, '#aaf')
+	scene.createBox(10, 10, 50, 50, '#aaf')
 })
 
 btn2 = document.getElementById("btn_addCircle")
 btn2.addEventListener('click', function (){
-	createCircle(10, 10, 50, '#faa')
+	scene.createCircle(10, 10, 50, '#faa')
 })
 
 createCircle(10, 10, 50, '#faa')
