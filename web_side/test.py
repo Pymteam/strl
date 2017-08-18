@@ -25,5 +25,18 @@ class TestCase(unittest.TestCase):
 		assert u.is_correct_password('123456') is False
 		assert u.is_correct_password('12345')
 
+	def test_not_unique_nickname(self):
+		# тест на неуникальность никнейма
+		u1 = User(nickname='nick', email='nick@mail.ru', password='12345')
+		u2 = User(nickname='nick', email='nick1@mail.ru', password='12345')
+		db.session.add(u1)
+		db.session.add(u2)
+		try:
+			db.session.commit()
+			assert True
+		except:
+			assert False
+
+
 if __name__ == '__main__':
 	unittest.main()
