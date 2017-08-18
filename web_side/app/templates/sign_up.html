@@ -28,7 +28,7 @@
 
 	<div class="container">
 		{% include 'flash.html' %}
-		<form class="form-horizontal" action="" method="post" name="login">
+		<form class="form-horizontal" action="" method="post" name="sign_up">
 			{{ form.hidden_tag() }}
 			<h1>Регистрация</h1>
 			<div class="input-group" {% if form.nickname.errors %} error {% endif %}>

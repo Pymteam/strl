@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, g, flash
 from flask_login import current_user, login_user, logout_user, login_required
 from . import app, lm, db
-from .forms import SignUpForm
+from .forms import SignUpForm, SignInForm
 from .models import User
 
 
@@ -27,8 +27,24 @@ def index():
 
 @app.route('/sign_in', methods=['GET', 'POST'])
 def sign_in():
+	# если пользователь уже вошёл, то перенаправляем в index
+	if g.user is not None and g.user.is_authenticated:
+		flash('hello')
+		return redirect(url_for('index'))
+	form = SignInForm()
+	# принимаем email и password
+	# ищем пользователя с прнятым email и сравниваем с password
+	# если произошли ошибки, сообщаем о них
+	if form.validate_on_submit():
+		user = User.query.filter_by(email=form.email.data).first()
+		if user is None or user.is_correct_password() is not True:
+			flash('Your details are incorrect. Please try again.')
+			redirect(url_for('sign_in'))
 
-	return render_template("sign_in.html")
+		login_user(user)
+		flash('Welcome')
+		redirect(url_for('index'))
+	return render_template("sign_in.html", form=form)
 
 
 @app.route('/sign_up', methods=['GET', 'POST'])
