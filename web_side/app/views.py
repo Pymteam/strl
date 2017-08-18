@@ -24,8 +24,9 @@ def index():
 	return render_template("index.html")
 
 
-@app.route('/sign_in')
+@app.route('/sign_in', methods=['GET', 'POST'])
 def sign_in():
+
 	return render_template("sign_in.html")
 
 

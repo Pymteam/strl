@@ -5,7 +5,12 @@ from wtforms.fields.html5 import EmailField
 
 
 class SignUpForm(FlaskForm):
-	nickname = StringField('login', validators=[DataRequired()])
+	nickname = StringField('nickname', validators=[DataRequired()])
 	email = EmailField('email', validators=[DataRequired(), Email()])
 	password = PasswordField('New password', [DataRequired(), EqualTo('confirm', message='Password must match')])
 	confirm = PasswordField('Repeat Password')
+
+class SignInForm(FlaskForm):
+	email = EmailField('email', validators=[DataRequired(), Email()])
+	password = PasswordField('password', [DataRequired()])
+
