@@ -11,44 +11,70 @@
 	<div class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="index.html">STRL</a>				
+				<a class="navbar-brand" href="{{url_for('index')}}">STRL</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li><a href="index.html">Главная</a></li>
-				<li><a href="worldeditor.html">Редактор</a></li>
+				<li class="active"><a href="{{url_for('index')}}">Главная</a></li>
+				<li><a href="world_editor.html">Редактор</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="sign_in.html"><span class="glyphicon glyphicon-user"></span> Вход</a></li>
-				<li class="active"><a href="sign_up.html"><span class="glyphicon glyphicon-plus"></span> Регистрация</a></li>				
+				<li><a href="{{url_for('sign_in')}}"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li>
+				<li><a href="{{url_for('sign_up')}}"><span class="glyphicon glyphicon-user"></span> Регистрация</a></li>
+				<li><a href="{{url_for('index')}}"><span class="glyphicon glyphicon-log-out"></span> Выход</a></li>
 			</ul>
 			
 		</div>	
 	</div>
 
 	<div class="container">
-		<form>
+		{% include 'flash.html' %}
+		<form class="form-horizontal" action="" method="post" name="login">
+			{{ form.hidden_tag() }}
 			<h1>Регистрация</h1>
-			<div class="input-group">
+			<div class="input-group" {% if form.nickname.errors %} error {% endif %}>
 				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-				<input id="username" type="text" class="form-control" name="username" placeholder="Введите ваше имя">
+				<!--<input id="username" type="text" class="form-control" name="username" placeholder="Введите ваше имя">-->
+                <div class="controls">
+                    {{ form.nickname(class="form-control", placeholder="Введите ваше имя") }}
+                    {% for error in form.nickname.errors %}
+                        <span class="help-inline">[{{ error }}]</span><br>
+                    {% endfor %}
+                </div>
 			</div>
 			<br>
-			<div class="input-group">
+			<div class="input-group" {% if form.email.errors %} error {% endif %}>
 				<span class="input-group-addon"><i class="glyphicon glyphicon-inbox"></i></span>
-				<input id="email" type="text" class="form-control" name="email" placeholder="Введите ваш e-mail">
+				<!--<input id="email" type="text" class="form-control" name="email" placeholder="Введите ваш e-mail">-->
+				{{ form.email(class="form-control", placeholder="Введите ваш e-mail") }}
+				{% for error in form.email.errors %}
+					<span class="help-inline">[{{ error }}]</span><br>
+				{% endfor %}
 			</div>
 			<br>
-			<div class="input-group">
+			<div class="input-group" {% if form.password.errors %} error {% endif %}>
 				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-				<input id="password" type="password" class="form-control" name="password" placeholder="Введите ваш пароль">
+				<!--<input id="password" type="password" class="form-control" name="password" placeholder="Введите ваш пароль">-->
+				{{ form.password(class="form-control", placeholder="Введите ваш пароль") }}
+				{% for error in form.password.errors %}
+					<span class="help-inline">[{{ error }}]</span><br>
+				{% endfor %}
 			</div>
 			<br>
-			<div class="input-group">
+			<div class="input-group" {% if form.confirm.errors %} error {% endif %}>
 				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-				<input id="password" type="password" class="form-control" name="password" placeholder="Подтвердите ваш пароль">
+				<!--<input id="password" type="password" class="form-control" name="password" placeholder="Подтвердите ваш пароль">-->
+				{{ form.confirm(class="form-control", placeholder="Подтвердите ваш пароль") }}
+				{% for error in form.confirm.errors %}
+					<span class="help-inline">[{{ error }}]</span><br>
+				{% endfor %}
 			</div>
 			<br>
-			<button type="button" class="btn btn-primary">Зарегистрироваться</button>
+			<!--<button type="button" class="btn btn-primary">Зарегистрироваться</button>-->
+			<div class="control-group">
+                <div class="controls">
+                    <input class="btn btn-primary" type="submit" value="Зарегистрироваться">
+                </div>
+            </div>
 		</form>
 
 	</div>
