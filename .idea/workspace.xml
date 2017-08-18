@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93688422-83d0-400a-b0a6-2e83b028d412" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web_side/migrations/versions/ab55e9133bc2_.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/web_side/migrations/versions/e3122016165c_.py" afterPath="$PROJECT_DIR$/web_side/migrations/versions/e2b716262217_.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_side/app.db" afterPath="$PROJECT_DIR$/web_side/app.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_side/test.db" afterPath="$PROJECT_DIR$/web_side/test.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_side/app/models.py" afterPath="$PROJECT_DIR$/web_side/app/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_side/app/__init__.py" afterPath="$PROJECT_DIR$/web_side/app/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_side/app/views.py" afterPath="$PROJECT_DIR$/web_side/app/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_side/test.py" afterPath="$PROJECT_DIR$/web_side/test.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,8 +20,8 @@
       <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web_side/app/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+            <state relative-caret-position="252">
+              <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -30,7 +29,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="e2b716262217_.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="e2b716262217_.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web_side/migrations/versions/e2b716262217_.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="216">
@@ -52,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web_side/app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+            <state relative-caret-position="330">
+              <caret line="27" column="22" lean-forward="true" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
               <folding>
                 <element signature="e#0#62#0" expanded="true" />
               </folding>
@@ -77,8 +76,8 @@
       <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web_side/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state relative-caret-position="666">
+              <caret line="37" column="24" lean-forward="true" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
               <folding>
                 <element signature="e#20#29#0" expanded="true" />
               </folding>
@@ -165,24 +164,24 @@
       <list>
         <option value="$PROJECT_DIR$/web_side/manage.py" />
         <option value="$PROJECT_DIR$/web_side/app/templates/worldeditor.html" />
-        <option value="$PROJECT_DIR$/web_side/app/__init__.py" />
-        <option value="$PROJECT_DIR$/web_side/test.py" />
         <option value="$PROJECT_DIR$/web_side/run.py" />
-        <option value="$PROJECT_DIR$/web_side/app/views.py" />
         <option value="$PROJECT_DIR$/web_side/config.py" />
         <option value="$PROJECT_DIR$/web_side/app/forms.py" />
         <option value="$PROJECT_DIR$/web_side/app/templates/sign_up.html" />
         <option value="$PROJECT_DIR$/web_side/app/templates/sign_in.html" />
         <option value="$PROJECT_DIR$/web_side/app/templates/index.html" />
         <option value="$PROJECT_DIR$/web_side/app/models.py" />
+        <option value="$PROJECT_DIR$/web_side/app/views.py" />
+        <option value="$PROJECT_DIR$/web_side/app/__init__.py" />
+        <option value="$PROJECT_DIR$/web_side/test.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="65" />
-    <option name="y" value="24" />
+    <option name="y" value="52" />
     <option name="width" value="1215" />
-    <option name="height" value="1000" />
+    <option name="height" value="972" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -228,6 +227,12 @@
               <item name="strl" type="b2602c69:ProjectViewProjectNode" />
               <item name="strl" type="462c0819:PsiDirectoryNode" />
               <item name="web_side" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="strl" type="b2602c69:ProjectViewProjectNode" />
+              <item name="strl" type="462c0819:PsiDirectoryNode" />
+              <item name="web_side" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="strl" type="b2602c69:ProjectViewProjectNode" />
@@ -363,13 +368,21 @@
       <option name="project" value="LOCAL" />
       <updated>1502873047002</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Решил проблему с базами данных (теперь nickname неуникальный в БД)ю">
+      <created>1503061596015</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1503061596015</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1215" height="1000" extended-state="6" />
+    <frame x="65" y="52" width="1215" height="972" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3127572" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1563786" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33206832" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -405,7 +418,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Каркас приложения." />
-    <option name="LAST_COMMIT_MESSAGE" value="Каркас приложения." />
+    <MESSAGE value="Решил проблему с базами данных (теперь nickname неуникальный в БД)ю" />
+    <option name="LAST_COMMIT_MESSAGE" value="Решил проблему с базами данных (теперь nickname неуникальный в БД)ю" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -757,34 +771,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web_side/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#62#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web_side/app/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="56" lean-forward="false" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web_side/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <element signature="e#20#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web_side/manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -813,21 +799,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web_side/migrations/versions/e2b716262217_.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="13" column="20" lean-forward="true" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web_side/app/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+        <state relative-caret-position="252">
+          <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web_side/migrations/versions/e2b716262217_.py">
+    <entry file="file://$PROJECT_DIR$/web_side/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="13" column="20" lean-forward="true" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+        <state relative-caret-position="666">
+          <caret line="37" column="24" lean-forward="true" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
+          <folding>
+            <element signature="e#20#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web_side/app/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="56" lean-forward="false" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web_side/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="27" column="22" lean-forward="true" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#62#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
