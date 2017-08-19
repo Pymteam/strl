@@ -23,5 +23,6 @@ class SVGGraph{
 		var o = this.svg.polyline(points)
 		o.fill('none')
 		o.stroke({color: color, width: width})
+		return o
 	}
 }
