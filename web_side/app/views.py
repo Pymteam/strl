@@ -29,7 +29,6 @@ def index():
 def sign_in():
 	# если пользователь уже вошёл, то перенаправляем в index
 	if g.user is not None and g.user.is_authenticated:
-		flash('hello')
 		return redirect(url_for('index'))
 	form = SignInForm()
 	# принимаем email и password
@@ -37,13 +36,13 @@ def sign_in():
 	# если произошли ошибки, сообщаем о них
 	if form.validate_on_submit():
 		user = User.query.filter_by(email=form.email.data).first()
-		if user is None or user.is_correct_password() is not True:
+		if user is None or user.is_correct_password(form.password.data) is not True:
 			flash('Your details are incorrect. Please try again.')
-			redirect(url_for('sign_in'))
+			return redirect(url_for('sign_in'))
 
 		login_user(user)
 		flash('Welcome')
-		redirect(url_for('index'))
+		return redirect(url_for('index'))
 	return render_template("sign_in.html", form=form)
 
 
@@ -66,3 +65,5 @@ def sign_up():
 		flash('Thank you for signing up!')
 		return redirect(url_for('sign_up'))
 	return render_template("sign_up.html", form=form)
+
+

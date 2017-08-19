@@ -8,6 +8,21 @@ class User(db.Model):
 	email = db.Column(db.String(120), unique=True)
 	_password = db.Column(db.String(128))
 
+	@property
+	def is_authenticated(self):
+		return True
+
+	@property
+	def is_active(self):
+		return True
+
+	@property
+	def is_anonymous(self):
+		return False
+
+	def get_id(self):
+		return str(self.id)
+
 	@hybrid_property
 	def password(self):
 		return self._password

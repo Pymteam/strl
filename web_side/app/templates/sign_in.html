@@ -28,17 +28,18 @@
 
 	<div class="container">
 		{% include 'flash.html' %}
-		<form class="form-horizontal" action="" method="post" name="login">
+		<form class="form-horizontal" action="" method="post" name="sign_in">
+			{{ form.hidden_tag() }}
 			<h1>Вход</h1>
 			<div class="input-group" {% if form.email.errors %} error {% endif %}>
 				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 				<!--<input id="email" type="text" class="form-control" name="email" placeholder="Введите ваш e-mail">-->
-                <div class="controls">
-                    {{ form.email(class="form-control", placeholder="Введите ваш e-mail") }}
-                    {% for error in form.email.errors %}
-                        <span class="help-inline">[{{ error }}]</span><br>
-                    {% endfor %}
-                </div>
+
+				{{ form.email(class="form-control", placeholder="Введите ваш e-mail") }}
+				{% for error in form.email.errors %}
+					<span class="help-inline">[{{ error }}]</span><br>
+				{% endfor %}
+
 			</div>
 			<br>
             <div class="input-group" {% if form.password.errors %} error {% endif %}>
