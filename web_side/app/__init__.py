@@ -12,7 +12,7 @@ db = SQLAlchemy(app)
 lm = LoginManager()
 lm.init_app(app)
 # если пользователь не авторизован, то перенаправляем на авторизацию:
-lm.login_view = 'login'
+lm.login_view = 'sign_in'
 
 # storing passwords init
 bcrypt = Bcrypt(app)
