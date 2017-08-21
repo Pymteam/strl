@@ -4,3 +4,4 @@ For web_side install:
 2. pip3 install flask-migrate
 3. pip3 install flask-login
 4. pip3 install flask-sqlalchemy
+5. pip3 install flask-bcrypt
