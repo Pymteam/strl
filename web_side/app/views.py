@@ -72,3 +72,8 @@ def sign_up():
 def sign_out():
 	logout_user()
 	return redirect(url_for('index'))
+
+@app.route('/world_editor')
+@login_required
+def world_editor():
+	return render_template('world_editor.html')
