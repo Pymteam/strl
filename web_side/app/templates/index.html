@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>STRL</title>
-	<link rel="stylesheet" type="text/css" href="static/libs/bootstrap-3.3.7/css/bootstrap.css">
-	<script src="static/libs/jquery/jquery-3.2.1.js"></script>
-	<script src="static/libs/bootstrap-3.3.7/js/bootstrap.js"></script>
+{% extends 'base.html' %}
+{% block content %}
 
+<<<<<<< HEAD
 </head>
 <body>
 	<div class="navbar navbar-inverse">
@@ -25,13 +20,24 @@
 			</ul>
 			
 		</div>	
+=======
+<script type="text/javascript">activePage("index_page")</script>
+<div class="row">
+<div class="col-xs-6 col-sm-6 col-md-6">
+	<div class="panel panel-default">
+		<div class="panel-heading">GitHub проекта</div>
+		<div class="panel-body">
+			<p><a href="https://github.com/Pymteam/strl">https://github.com/Pymteam/strl</a></p>
+		</div>
+>>>>>>> v_0_0_3
 	</div>
-
-	<div class="container">
-		<h1>Pymteam project</h1>		
-	
-
+</div>
+<div class="col-xs-6 col-sm-6 col-md-6">
+	<div class="panel panel-default">
+		<div class="panel-heading">Почта проекта</div>
+		<div class="panel-body">
+			<p>pymteam@mail.ru</p>
 	</div>
-
-</body>
-</html>
+</div>
+</div>
+{% endblock %}
