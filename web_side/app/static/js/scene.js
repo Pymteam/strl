@@ -1,6 +1,7 @@
 
 var SCENE_NAME = "ROOT_SCENE"
 var SCENE_STD_COLOR = '#ddd'
+var SOP_SCALABLE = "SCALABLE"
 var SM_NORMAL = 0
 var SM_SELECT = 1
 var SM_SELECT_AND_TRANSFORM = 2
@@ -98,6 +99,11 @@ class CircleShape extends SceneObject{
 		this.shape = this.scene.graph.createCircle(10, 10, r, SCENE_STD_COLOR)
 		this.assignWithSVGObject()
 	}
+
+	setColor(color){
+		this.color = color
+		this.shape.fill(color)
+	}
 }
 
 class Scene{
@@ -117,15 +123,16 @@ class Scene{
 			},
 			objects: {
 				selected_frame: 0,
+				sp_drag: false,
 				scalable_points: [],
 				rotate_points: []
 
 			}
 		}
 		this.graph.svg.strl_object = this
-		this.graph.svg.on('mousedown', this.on_mousedown)
-		this.graph.svg.on('mousemove', this.on_mousemove)
-		this.graph.svg.on('mouseup', this.on_mouseup)
+		this.graph.svg.on('mousedown', this.so_on_mousedown)
+		this.graph.svg.on('mousemove', this.so_on_mousemove)
+		this.graph.svg.on('mouseup', this.so_on_mouseup)
 	}
 
 	print(){
@@ -138,7 +145,9 @@ class Scene{
 
 	add(obj){
 		this.objects.push(obj)
-		obj.shape.on('mousedown', this.on_mousedown)
+		obj.shape.on('mousedown', this.so_on_mousedown)
+		obj.shape.on('mousemove', this.so_on_mousemove)
+		obj.shape.on('mouseup', this.so_on_mouseup)
 	}
 
 	find(name){
@@ -158,11 +167,58 @@ class Scene{
 	unpick(){
 		if (this.picked.ref != 0){
 			this.picked.objects.selected_frame.shape.remove()
+			delete this.picked.objects.selected_frame
 			this.picked.ref = 0
+			for (var i = 0; i < 4; i++){
+				this.picked.objects.scalable_points[i].shape.remove()
+				delete this.picked.objects.scalable_points[i]
+			}
+			this.picked.objects.scalable_points = []
 		}
 	}
 
-	on_mousedown(event){
+	pick(self){
+		var scene = self.scene
+		//указать что выбран объект
+		scene.picked.picked = true
+		//указать ссылку на выбранный объект
+		scene.picked.ref = self
+		//задать размеры рамки
+		var w = self.size.w
+		var h = self.size.h
+		var frame = new FrameShape(self.scene, "frame", w, h)
+		//задать координаты рамки
+		var x = self.position.x
+		var y = self.position.y
+		frame.shape.move(x, y)
+		//добавить рамку к сцене
+		scene.picked.objects.selected_frame = frame		
+		//задать цвет рамки
+		frame.setColor('#0f0')
+		//создать точки для масштабирования
+		var s_points = []
+		s_points.push([x, y])
+		s_points.push([x + w, y])
+		s_points.push([x + w, y + h])
+		s_points.push([x, y + h])
+		var sp_sz = 10
+		for (var i = 0; i < 4; i++){
+			var sp = new CircleShape(self.scene, SOP_SCALABLE, sp_sz)
+			sp.move(s_points[i][0], s_points[i][1])
+			sp.dmove(- sp_sz / 2, - sp_sz / 2)
+			sp.setColor("#33f")
+			sp.index = i
+			sp.shape.on('mousedown', this.so_on_mousedown)
+			sp.shape.on('mousemove', this.so_on_mousemove)
+			sp.shape.on('mouseup', this.so_on_mouseup)
+			scene.picked.objects.scalable_points.push(sp)
+		}
+
+		//задать состояние выбранного объекта
+		scene.picked.drag = true
+	}
+
+	so_on_mousedown(event){
 		//получение объекта strl
 		var self = this.strl_object
 		//если ткнули не в объект, а в сцену, то отменить выбор
@@ -170,52 +226,46 @@ class Scene{
 			if (! self.picked.picked){
 				self.unpick()
 			}
+			return
+		}
+		if (self.name == SOP_SCALABLE){
+			self.scene.picked.picked = true
+			console.log("Pick scalable ", self.index)
+			self.scene.picked.objects.sp_drag = true
+			return
 		}
 		//если ткнули в объект...
-		if (self.name != SCENE_NAME){
-			var scene = self.scene
-			//делаем деселект
-			scene.unpick()
-			//создаем рамку и указываем что объект выбран
-			if (scene.picked.ref == 0){
-				//указать что выбран объект
-				scene.picked.picked = true
-				//указать ссылку на выбранный объект
-				scene.picked.ref = self
-				//задать размеры рамки
-				var w = self.size.w
-				var h = self.size.h
-				var frame = new FrameShape(self.scene, "frame", w, h)
-				//задать координаты рамки
-				var x = self.position.x
-				var y = self.position.y
-				frame.shape.move(x, y)
-				//добавить рамку к сцене
-				scene.picked.objects.selected_frame = frame		
-				//задать цвет рамки
-				frame.setColor('#0f0')
-				//задать состояние выбранного объекта
-				scene.picked.drag = true
-				//сохранить координаты курсора
-				scene.picked.predPosition.x = event.clientX
-				scene.picked.predPosition.y = event.clientY
-			}
+		var scene = self.scene
+		//делаем деселект
+		scene.unpick()
+		//создаем рамку и указываем что объект выбран
+		if (scene.picked.ref == 0){
+			scene.pick(self)
+			//сохранить координаты курсора
+			scene.picked.predPosition.x = event.clientX
+			scene.picked.predPosition.y = event.clientY
 		}
+		
 	}
 
-	on_mouseup(event){
+	so_on_mouseup(event){
 		var self = this.strl_object
 		if (self.name == SCENE_NAME){
 			//указываем что объект не выбирается
 			self.picked.picked = false
 			//указываем что объект не перемещается
 			self.picked.drag = false
+			self.picked.objects.sp_drag = false
+			console.log("unPick scalable")
 		}
 	}
 
-	on_mousemove(event){
+	so_on_mousemove(event){
 		var self = this.strl_object.scene.picked.ref
 		//если объект перемещается
+		if (self.scene.picked.objects.sp_drag){
+			
+		}
 		if (this.strl_object.scene.picked.drag)
 		{
 			//считаем смещение в пикселях
@@ -227,6 +277,11 @@ class Scene{
 			//смещаем рамку
 			var sFrame = self.scene.picked.objects.selected_frame;
 			sFrame.dmove(offsetX, offsetY)
+			//смещаем scalable_points
+			for (var i = 0; i < 4; i++){
+				var item = self.scene.picked.objects.scalable_points[i]
+				item.dmove(offsetX, offsetY)
+			}
 			//сохраняем текущие координаты курсора
 			pred.x = event.clientX
 			pred.y = event.clientY
@@ -234,21 +289,8 @@ class Scene{
 
 	}
 
-	on_click(){
+	so_on_click(){
 		//console.log(this.strl_object.name)	
 	}
 
 }
-
-s = new Scene(new SVGGraph("worldeditor"))
-
-so = new BoxShape(s, "pituh4", 100, 30)
-s.add(so)
-so = new BoxShape(s, "pituh1", 100, 30)
-s.add(so)
-so.move(300, 300)
-so = new CircleShape(s, "pituh2", 70)
-s.add(so)
-so.move(200, 150)
-
-s.print()
