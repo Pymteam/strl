@@ -1,8 +1,6 @@
 #worldeditor{
 	border: dashed 1px #000;
-	width: 80%;
 	height: 100%;
-	display: block;
 }
 
 .editorcontainer{
@@ -15,6 +13,40 @@
 
 .btn{
 	width: 100%;
+}
+
+.maxheight{
+	height: 100%;
+}
+
+#panels_obj_prop{
+	height: 100%;
+}
+
+#container-objects{
+	height: 50%;
+}
+
+#container-properties{
+	height: 50%;
+}
+
+#panel-objects{
+	height: 100%;
+	bottom: 3px;
+}
+
+#panel-properties{
+	height: 100%;
+	bottom: 3px;
+}
+
+#container-tools{
+	height: 100%;
+}
+
+#panel-tools{
+	height: 100%;
 }
 
 html{
