@@ -18,7 +18,6 @@ def before_request():
 	g.user = current_user
 
 
-
 @app.route('/')
 @app.route('/index')
 @login_required
@@ -26,11 +25,7 @@ def index():
 	return render_template("index.html")
 
 
-<<<<<<< HEAD
-@app.route('/sign_in')
-=======
 @app.route('/sign_in', methods=['GET', 'POST'])
->>>>>>> v_0_0_3
 def sign_in():
 	# если пользователь уже вошёл, то перенаправляем в index
 	if g.user is not None and g.user.is_authenticated:
@@ -45,16 +40,6 @@ def sign_in():
 			flash('Your details are incorrect. Please try again.')
 			return redirect(url_for('sign_in'))
 
-<<<<<<< HEAD
-
-@app.route('/sign_up')
-def sign_up():
-	return render_template("sign_up.html")
-
-@app.route('/world_editor')
-def world_editor():
-	return render_template("worldeditor.html")
-=======
 		login_user(user)
 		flash('Welcome')
 		return redirect(url_for('index'))
@@ -92,4 +77,3 @@ def sign_out():
 @login_required
 def world_editor():
 	return render_template('world_editor.html')
->>>>>>> v_0_0_3

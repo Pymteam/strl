@@ -2,7 +2,6 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from . import bcrypt, db
 
 
-
 class User(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	nickname = db.Column(db.String(45))
