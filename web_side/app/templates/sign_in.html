@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,24 +26,41 @@
 			
 		</div>	
 	</div>
+=======
+{% extends 'base.html' %}
+>>>>>>> 3529625b5fbc268fbfe820ca649fe203a8f40f64
 
-	<div class="container">
-		<form>
-			<h1>Вход</h1>
-			<div class="input-group">
-				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-				<input id="email" type="text" class="form-control" name="email" placeholder="Введите ваш e-mail">
-			</div>
-			<br>
-			<div class="input-group">
-				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-				<input id="password" type="password" class="form-control" name="password" placeholder="Введите ваш пароль">
-			</div>
-			<br>
-			<button type="button" class="btn btn-primary">Войти</button>
-		</form>
+{% block content %}
+<div class="container">
+    <form class="form-horizontal" action="" method="post" name="sign_in">
+        {{ form.hidden_tag() }}
+        <h1>Вход</h1>
+        <div class="input-group" {% if form.email.errors %} error {% endif %}>
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <!--<input id="email" type="text" class="form-control" name="email" placeholder="Введите ваш e-mail">-->
 
-	</div>
+            {{ form.email(class="form-control", placeholder="Введите ваш e-mail") }}
+            {% for error in form.email.errors %}
+                <span class="help-inline">[{{ error }}]</span><br>
+            {% endfor %}
 
-</body>
-</html>
+        </div>
+        <br>
+        <div class="input-group" {% if form.password.errors %} error {% endif %}>
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <!--<input id="password" type="password" class="form-control" name="password" placeholder="Введите ваш пароль">-->
+            {{ form.password(class="form-control", placeholder="Введите ваш пароль") }}
+            {% for error in form.password.errors %}
+                <span class="help-inline">[{{ error }}]</span><br>
+            {% endfor %}
+        </div>
+        <br>
+        <div class="control-group">
+            <div class="controls">
+                <input class="btn btn-primary" type="submit" value="Войти">
+            </div>
+        </div>
+    </form>
+
+</div>
+{% endblock %}
