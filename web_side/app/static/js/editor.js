@@ -1,26 +1,30 @@
 
-s = new Scene(new SVGGraph("worldeditor"))
+graph = new SVGGraph("worldeditor")
 
-// so = new BoxShape(s, "pituh4", 100, 30)
-// s.add(so)
+current = 0
 
-// so = new BoxShape(s, "pituh1", 100, 30)
-// s.add(so)
-// so.move(300, 300)
-
-// so = new CircleShape(s, "pituh2", 70)
-// s.add(so)
-// so.move(200, 150)
-
-for (var i = 0; i < 3; i++){
-	for (var j = 0; j < 3; j++){
-		so = new CircleShape(s, "qqq", 100)
-		so.move(10 + i * 120, 10 + j * 120)
-		s.add(so)
-	}
+function initObject(obj){
+	obj.selectize(false)
+	obj.resize()
+	obj.draggable()
+	obj.on('mousedown', pick)
 }
 
-s.print()
+function pick(){
+	if (current != 0){
+		current.selectize(false)
+	}
+	current = this
+	current.selectize(true)
+}
 
-var objects_panel = document.getElementById("objects_panel_body")
-console.log(objects_panel)
+function unpick(){
+	current = 0
+}
+
+var c1 = graph.createCircle(100, 100, 100, '#aaf')
+initObject(c1)
+var r1 = graph.createRect(210, 100, 100, 40, '#afa')
+initObject(r1)
+
+
