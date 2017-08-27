@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, g, flash
+from flask import render_template, redirect, url_for, g, flash, request, jsonify
 from flask_login import current_user, login_user, logout_user, login_required
 from . import app, lm, db
 from .forms import SignUpForm, SignInForm
@@ -78,3 +78,18 @@ def sign_out():
 @login_required
 def world_editor():
 	return render_template('world_editor.html')
+
+@app.route('/moving')
+@login_required
+def moving():
+	x = request.args.get('x', 0, type=int)
+	y = request.args.get('y', 0, type=int)
+	x += 3
+	y += 2
+	return jsonify(x=x, y=y)
+
+@app.route('/projects')
+@login_required
+def projects():
+	return render_template('projects.html')
+	

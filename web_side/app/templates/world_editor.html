@@ -1,34 +1,49 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container editorcontainer">
-    <div class="row">
-        <div id="worldeditor" class="col-md-8 col-sm-8">
-
-        </div>
-        <div class="col-md-2 col-sm-2">
-            <div class="row">
-                <div class=" panel panel-primary">
-                    <div class="panel-heading">Инструменты</div>
-                    <div class="panel-body">
-                        <div id="btn_addBox" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Прямоугольник</div>
-                        <div id="btn_addCircle" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Круг</div>
-
-                    </div>
+<script src="static/libs/SVG/svg.js"></script>
+<script src="static/libs/SVG/svg.draggable.js"></script>
+<script src="static/libs/SVG/svg.select.js"></script>
+<script src="static/libs/SVG/svg.resize.js"></script>
+<script type="text/javascript">activePage("editor_page")</script>
+<div class="row">
+    <div id="panels_obj_prop"  class="col-md-2 col-sm-2">
+        <div id="container-objects" class="row">
+            <div id="panel-objects" class=" panel panel-primary">
+                <div class="panel-heading">Объекты</div>
+                <div id="objects_panel_body" class="panel-body">
+                    
                 </div>
             </div>
-            <div class="row">
-                <div class=" panel panel-primary">
-                    <div class="panel-heading">Свойства</div>
-                    <div class="panel-body">
-
-                    </div>
+        </div>
+        <div id="container-properties" class="row">
+            <div id="panel-properties" class=" panel panel-primary">
+                <div class="panel-heading">Свойства</div>
+                <div class="panel-body">
+                        
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <div id="worldeditor" class="col-sm-8 col-md-8">
+        
+    </div>
+    <div class="col-md-2 col-sm-2 maxheight">
+        <div id="container-tools" class="row">
+            <div id="panel-tools" class=" panel panel-primary">
+                <div class="panel-heading">Инструменты</div>
+                <div class="panel-body">
+                    <div id="btn_addBox" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Прямоугольник</div>
+                    <div id="btn_addCircle" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Круг</div>
+                    <div id="move_circle" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Переместить</div>
 
-<script src="static/libs/SVG/svg.js"></script>
-<script src="static/js/editor.js"></script>
+                    
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+    <script src="static/js/basesvg.js"></script>
+    <script src="static/js/editor.js"></script>
 {% endblock %}

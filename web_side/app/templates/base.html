@@ -4,8 +4,11 @@
 	<meta charset="utf-8">
 	<title>STRL</title>
 	<link rel="stylesheet" type="text/css" href="static/libs/bootstrap-3.3.7/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="static/css/editor.css">
+	<link rel="stylesheet" type="text/css" href="static/css/svg.select.css">
 	<script src="static/libs/jquery/jquery-3.2.1.js"></script>
 	<script src="static/libs/bootstrap-3.3.7/js/bootstrap.js"></script>
+	<script src="static/js/nav.js"></script>
 </head>
 <body>
 	<div class="navbar navbar-inverse">
@@ -14,15 +17,16 @@
 				<a class="navbar-brand" href="{{url_for('index')}}">STRL</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li><a href="{{url_for('index')}}">Главная</a></li>
+				<li id="index_page"><a href="{{url_for('index')}}">Главная</a></li>
                 {% if g.user.is_authenticated %}
-				<li><a href="{{url_for('world_editor')}}">Редактор</a></li>
+                <li id="projects_page"><a href="{{url_for('projects')}}">Мои проекты</a></li>
+				<li id="editor_page"><a href="{{url_for('world_editor')}}">Редактор</a></li>
                 {% endif %}
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
                 {% if not g.user.is_authenticated %}
-                    <li><a href="{{url_for('sign_in')}}"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li>
-                    <li><a href="{{url_for('sign_up')}}"><span class="glyphicon glyphicon-user"></span> Регистрация</a></li>
+                    <li id="sign_in_page"><a href="{{url_for('sign_in')}}"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li>
+                    <li id="sign_up_page"><a href="{{url_for('sign_up')}}"><span class="glyphicon glyphicon-user"></span> Регистрация</a></li>
                 {% else %}
 				    <li><a href="{{url_for('sign_out')}}"><span class="glyphicon glyphicon-log-out"></span> Выход</a></li>
                 {% endif %}
@@ -31,8 +35,16 @@
 		</div>
 	</div>
     <hr>
-    {% include 'flash.html' %}
+    <div class="container">
+	    {% include 'flash.html' %}
+	    {% block content %}
 
-    {% block content %}{% endblock %}
+	    {% endblock %}
+	    <div class="row">
+		    <div id="footer">
+		    	<p>STRL created by pymteam</p>    	
+		    </div>
+	    </div>
+    </div>
 </body>
 </html>
