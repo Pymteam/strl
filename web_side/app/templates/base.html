@@ -19,6 +19,7 @@
 			<ul class="nav navbar-nav">
 				<li id="index_page"><a href="{{url_for('index')}}">Главная</a></li>
                 {% if g.user.is_authenticated %}
+                <li id="projects_page"><a href="{{url_for('projects')}}">Мои проекты</a></li>
 				<li id="editor_page"><a href="{{url_for('world_editor')}}">Редактор</a></li>
                 {% endif %}
 			</ul>

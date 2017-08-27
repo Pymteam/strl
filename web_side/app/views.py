@@ -86,4 +86,9 @@ def moving():
 	x += 3
 	y += 2
 	return jsonify(x=x, y=y)
+
+@app.route('/projects')
+@login_required
+def projects():
+	return render_template('projects.html')
 	
