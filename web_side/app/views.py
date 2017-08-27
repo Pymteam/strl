@@ -2,7 +2,8 @@ from flask import render_template, redirect, url_for, g, flash, request, jsonify
 from flask_login import current_user, login_user, logout_user, login_required
 from . import app, lm, db
 from .forms import SignUpForm, SignInForm
-from .models import User
+from .models import User, Project, World
+from .jsoner import project_json_from_user
 
 
 # загружает пользователя
@@ -79,17 +80,86 @@ def sign_out():
 def world_editor():
 	return render_template('world_editor.html')
 
-@app.route('/moving')
-@login_required
-def moving():
-	x = request.args.get('x', 0, type=int)
-	y = request.args.get('y', 0, type=int)
-	x += 3
-	y += 2
-	return jsonify(x=x, y=y)
 
 @app.route('/projects')
 @login_required
 def projects():
+	#TO DO: добавить поддержку передачи projects_json
+	project_json = project_json_from_user(g.user)
 	return render_template('projects.html')
-	
+
+
+@app.route('/projects/add')
+@login_required
+def add_project():
+	# TO DO: проверить на ошибки, входя на этот юрл вручную
+	error = 0
+	name = request.args.get('name', 'project', type=str)
+	project = Project(name=name, owner=g.user)
+	db.session.add(project)
+	db.commit()
+	return jsonify(error=error, name=project.name, id=project.id)
+
+
+@app.route('/projects/edit')
+@login_required
+def edit_project():
+	error = 0
+	id = request.args.get('id', -1, type=int)
+	new_name = request.args.get('new_name', 'new_name', type=str)
+
+	project = Project.query.filter_by(id=id).first()
+	project.name = new_name
+	db.session.commit()
+	return jsonify(error=error, new_name=project.name, id=project.id)
+
+
+@app.route('/projects/delete')
+@login_required
+def delete_project():
+	error = 0
+	id = request.args.get('id', -1, type=int)
+
+	project = Project.query.filter_by(id=id).first()
+	db.session.delete(project)
+	db.session.commit()
+	return jsonify(error=error)
+
+
+@app.route('/projects/add_world')
+@login_required
+def add_world():
+	error = 0
+	project_id = request.args.get('project_id', -1, type=int)
+	name = request.args.get('name', 'world', type=str)
+
+	project = Project.query.filter_by(id=project_id).first()
+	world = World(name=name, owner=project)
+	db.session.add(world)
+	db.session.commit()
+	return jsonify(error=error, name=world.name, id=world.id)
+
+
+@app.route('/projects/edit_world')
+@login_required
+def edit_world():
+	error = 0
+	id = request.args.get('id', -1, type=int)
+	new_name = request.args.get('new_name', 'new_name', type=str)
+
+	world = World.query.filter_by(id=id).first()
+	world.name = new_name
+	db.session.commit()
+	return jsonify(error=error, new_name=world.name, id=world.id)
+
+
+@app.route('/projects/delete_world')
+@login_required
+def delete_world():
+	error = 0
+	id = request.args.get('id', -1, type=int)
+
+	world = World.query.filter_by(id=id).first()
+	db.session.delete(world)
+	db.session.commit()
+	return jsonify(error=error)

@@ -7,7 +7,7 @@ class User(db.Model):
 	nickname = db.Column(db.String(45))
 	email = db.Column(db.String(45), unique=True)
 	_password = db.Column(db.String(128))
-	projects = db.relationship('Project', backref='owner', lazy='dynamic')
+	projects = db.relationship('Project', backref='owner', lazy='dynamic', cascade='save-update, merge, delete')
 
 	@property
 	def is_authenticated(self):
@@ -44,7 +44,7 @@ class Project(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 	name = db.Column(db.String(45))
-	worlds = db.relationship('World', backref='owner', lazy='dynamic')
+	worlds = db.relationship('World', backref='owner', lazy='dynamic', cascade='save-update, merge, delete')
 
 
 class World(db.Model):
