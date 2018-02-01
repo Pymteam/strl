@@ -5,3 +5,4 @@ For web_side install:
 3. pip3 install flask-login
 4. pip3 install flask-sqlalchemy
 5. pip3 install flask-bcrypt
+6. pip3 install flask-wtf
